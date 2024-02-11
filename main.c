@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/11 16:54:57 by ssottori          #+#    #+#             */
+/*   Updated: 2024/02/11 21:01:18 by ssottori         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 bool	dup_err(int *data, int size)
@@ -55,14 +67,15 @@ void	fill_stack(int len, int *data, t_stack *stack)
 		stack->a[i] = data[i]; //i?
 		i++;
 	}
-	stack->last_a = len;
+	stack->last_a = &len;
 	stack->last_b = 0;
 }
 
 checkData	input_check(char *str)
 {
 	int		size;
-	int		data;
+	int		*data;
+	int		atoid_num;
 	checkData	result;
 
 	size = 0;
@@ -75,7 +88,10 @@ checkData	input_check(char *str)
 			break ;
 		}
 		if (ft_isdigit(*str))
-			data = ft_atoi(str);
+		{
+			atoid_num = ft_atoi(str);
+			data = &atoid_num;
+		}
 		if (!data)
 		{
 			result.valid = false;
@@ -104,6 +120,7 @@ t_stack	init_stack(int ac, char **av)
 	str = NULL;
 	len = 0;
 	stack = NULL;
+	checked.parsed_data = NULL;
 	if (ac == 2)
 	{
 		str = ft_split(av[1], ' ');
@@ -112,15 +129,15 @@ t_stack	init_stack(int ac, char **av)
 		checked = input_check(*str);
 		if (!checked.valid)
 			ft_error(stack);
-		while (parsed_data.checked[len])
+		while (checked.parsed_data[len])
 			len++;
 		stack = malloc(len * sizeof(t_stack)); //?
-		fill_stack(len, parsed_data.checked, 0, stack); //?
+		fill_stack(len, checked.parsed_data, stack); //?
 	}
 	else if (ac >= 3)
 	{
-		stack = malloc(ac - 1) * sizeof(t_stack);
-		fill_stack(ac, av, 1, stack);
+		stack = malloc((ac - 1) * sizeof(t_stack));
+		fill_stack(len, checked.parsed_data, stack);
 	}
 	else
 		ft_error(stack);
@@ -137,14 +154,29 @@ void	ft_exit(t_stack *stack)
 	return ;
 }
 
+void	print_stack(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	if (stack == NULL || stack->a == NULL || stack->last_a == 0)
+		ft_error(stack);
+	ft_printf("Unsorted Stack passes checks!: \n");
+	while (i < *(stack->last_a))
+	{
+		ft_printf("%d\n", stack->a[i]);
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*stack;
 
 	stack = NULL;
-	if (ac == 1 || (ac == 2 && av[1][0]))
-		return (0); // or 1?
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		return (1); // 0 or 1?
 	*stack = init_stack(ac, av);
-	ft_printf("Stack a: %d\n", print_stack(stack->a));
+	print_stack(stack);
 	return (0);
 }

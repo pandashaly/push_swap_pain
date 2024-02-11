@@ -6,7 +6,7 @@
 #    By: ssottori <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 19:29:37 by ssottori          #+#    #+#              #
-#    Updated: 2024/02/09 23:34:13 by ssottori         ###   ########.fr        #
+#    Updated: 2024/02/11 20:46:44 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = push_swap
 SRC_DIR = src
 OBJ_DIR = obj
 LIBFT_D = libft
-INC_DIR = push_swap.h
+INC = inc
 
 SRCS = main.c \
 
@@ -30,7 +30,7 @@ OBJS = $(SRCS:.c=.o)
 LIBFT = $(LIBFT_D)/libft.a
 LIBS = -L$(LIBFT_D) -lft
 
-HEADERS = -I$(INC_DIR) -I$(LIBFT_D)
+HEADERS = -I$(INC) -I$(LIBFT_D)/inc
 
 all: $(LIBFT) $(NAME)
 
@@ -40,12 +40,12 @@ $(LIBFT):
 $(NAME): $(OBJS)
 	$(CCFLAGS) $(OBJS) $(HEADERS) $(LIBS) -o $(NAME)
 	echo "[$(GREEN)PUSH_SWAP$(NC)] Building $@..."
+#	$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/push_swap.h
 
-#$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/push_swap.h
 %.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	echo "[$(GREEN)PUSH_SWAP$(NC)] Compiling $< --> $@"
-	@cc -Wall -Wextra -Werror -g $(HEADERS) -c $< -o $@
+	$(CCFLAGS) $(HEADERS) -c $< -o $@
 
 clean:
 	@echo "[$(RED)PUSH_SWAP$(NC)] Cleaning object files..."
