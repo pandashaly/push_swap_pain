@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-/*t_listc	*init_stack(int argc, char *argv[])
-{
-	t_listc	*stack;
-
-	stack = NULL;
-	if (argc == 1)
-		exit (0);
-	argv++;
-	argc--;
-	while (argc--)
-		parse_string(&stack, *(argv++));
-	return (stack->next);
-}*/
-
 bool	dup_err(int *data, int size)
 {
 	int	i;
@@ -57,17 +43,19 @@ void	ft_error(t_stack *stack)
 	exit (EXIT_FAILURE);
 }
 
-void	fill_stack(int ac, char **av, int i, t_stack *stack)
+void	fill_stack(int len, int *data, t_stack *stack)
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	stack->a = malloc(sizeof(int) * (ac - 1)); //?
-	stack->b = malloc(sizeof(int) * (ac - 1));
-	while (i < ac)
-		stack->a[j++] = ft_atoi(av[i++], stack->a); //why j and why i?
-	dup_err(stack->a, j);
-	stack->last_a = j;
+	i = 0;
+	stack->a = malloc(sizeof(int) * len); //?
+	stack->b = malloc(sizeof(int) * len);
+	while (i < len)
+	{
+		stack->a[i] = data[i]; //i?
+		i++;
+	}
+	stack->last_a = len;
 	stack->last_b = 0;
 }
 
@@ -135,7 +123,7 @@ t_stack	init_stack(int ac, char **av)
 		fill_stack(ac, av, 1, stack);
 	}
 	else
-		ft_error(stack); //why not ft_err
+		ft_error(stack);
 	free(str);
 	return (*stack);
 }
@@ -155,7 +143,7 @@ int	main(int ac, char **av)
 
 	stack = NULL;
 	if (ac == 1 || (ac == 2 && av[1][0]))
-		return (0); // why not 1?
+		return (0); // or 1?
 	*stack = init_stack(ac, av);
 	ft_printf("Stack a: %d\n", print_stack(stack->a));
 	return (0);
