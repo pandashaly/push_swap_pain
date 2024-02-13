@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+MAKEFLAGS += --silent
 RED=\033[1;31m
 GREEN=\033[1;32m
 NC=\033[0m
@@ -38,24 +39,24 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_D)
 
 $(NAME): $(OBJS)
-	$(CCFLAGS) $(OBJS) $(HEADERS) $(LIBS) -o $(NAME)
-	echo "[$(GREEN)PUSH_SWAP$(NC)] Building $@..."
+			$(CCFLAGS) $(OBJS) $(HEADERS) $(LIBS) -o $(NAME)
+	@echo "[$(GREEN)PUSH_SWAP$(NC)] Building $@..."
 #	$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/push_swap.h
 
 %.o: %.c
-	@mkdir -p $(OBJ_DIR)
+			@mkdir -p $(OBJ_DIR)
 	echo "[$(GREEN)PUSH_SWAP$(NC)] Compiling $< --> $@"
 	$(CCFLAGS) $(HEADERS) -c $< -o $@
 
 clean:
 	@echo "[$(RED)PUSH_SWAP$(NC)] Cleaning object files..."
-	$(MAKE) -C $(LIBFT_D) clean
-	@$(RM) $(OBJ_DIR)
+			$(MAKE) -C $(LIBFT_D) clean
+			@$(RM) $(OBJ_DIR)
 
 fclean: clean
 	@echo "[$(RED)PUSH_SWAP$(NC)] Cleaning executable file..."
-	$(MAKE) -C $(LIBFT_D) fclean
-	@$(RM) $(NAME)
+			$(MAKE) -C $(LIBFT_D) fclean
+			@$(RM) $(NAME)
 
 re: fclean all
 

@@ -136,6 +136,7 @@ t_stack	init_stack(int ac, char **av)
 	}
 	else if (ac >= 3)
 	{
+		ft_printf("hi there"); //
 		stack = malloc((ac - 1) * sizeof(t_stack));
 		fill_stack(len, checked.parsed_data, stack);
 	}
@@ -173,10 +174,14 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack;
 
-	stack = NULL;
+	stack = malloc(sizeof(t_stack));
 	if (ac == 1 || (ac == 2 && !av[1][0]))
+	{
+		ft_printf("Not enough args");
 		return (1); // 0 or 1?
+	}
 	*stack = init_stack(ac, av);
 	print_stack(stack);
+	ft_exit(stack); //new
 	return (0);
 }

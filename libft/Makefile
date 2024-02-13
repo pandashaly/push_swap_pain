@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+MAKEFLAGS += --silent
+
 RED=\033[1;31m
 GREEN=\033[1;32m
 NC=\033[0m
@@ -84,18 +86,18 @@ SRCS = $(IS) $(MEM) $(PUT) $(STR) $(LST) $(TO) $(PRINTF) $(GNL)
 all: $(NAME)
 
 %.o: %.c $(INC)libft.h $(INC)ft_printf.h $(INC)get_next_line_bonus.h
-	@echo "[$(GREEN)LIBFT$(NC)] Compiling $< --> $@"
+	@echo "[$(GREEN)LIBFT$(NC)] - $<"
 	$(CCFLAGS) -I$(INC) -c $< -o $@
 
 $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
 clean: 
-	@echo "[$(RED)LIBFT$(NC)] Cleaning up obj files"
+	#echo "[$(RED)LIBFT$(NC)] Cleaning up obj files"
 	$(RM) $(OBJ) $(OBJ_ADD) $(OBJ_BONUS)
 
 fclean: clean
-	@echo "[$(RED)LIBFT$(NC)] Cleaning executable file..."
+	#echo "[$(RED)LIBFT$(NC)] Cleaning executable file..."
 	$(RM) $(NAME)
 
 re: fclean all
