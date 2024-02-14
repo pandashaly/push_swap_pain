@@ -35,9 +35,11 @@ typedef	struct
 
 bool	syntax_err(char *str);
 bool	dup_err(int *data, int size);
-void	ft_error(t_stack *stack);
-void	fill_stack(int len, int *data, t_stack *stack);
+void	ft_error(char *type);
+void	fill_stack(int len, char **str, t_stack *stack, int i);
 checkData	input_check(char *str);
+t_stack	*init_stack(int ac, char **av);
 void	ft_exit(t_stack *stack);
+int	ft_superatoi(char *str);
 
 #endif

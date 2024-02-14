@@ -12,6 +12,35 @@
 
 #include "push_swap.h"
 
+int	ft_superatoi(char *str)
+{
+	long int		r;
+	int			s;
+	int			i;
+
+	r = 0;
+	s = 1;
+	i = 0;
+	while (ft_iswhitespace(str[i]))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		s = -1;
+		i++;
+	}
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			ft_error("Non numeric character found!");
+		r = r * 10 + str[i++] - '0';
+	}
+	if (r > 2147483647 || r < -2147483647)
+		ft_error("Out of Range!");
+	return (r * s);
+}
+
 bool	dup_err(int *data, int size)
 {
 	int	i;
@@ -48,26 +77,23 @@ bool	syntax_err(char *str)
 	return true;
 }
 
-void	ft_error(t_stack *stack)
+void	ft_error(char *type)
 {
-	ft_exit(stack);
-	write (1, "Error!\n", 7);
+	//ft_exit(stack);
+	ft_printf("Error! %s", type);
 	exit (EXIT_FAILURE);
 }
 
-void	fill_stack(int len, int *data, t_stack *stack)
+void	fill_stack(int ac, char **str, t_stack *stack, int i)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	stack->a = malloc(sizeof(int) * len); //?
-	stack->b = malloc(sizeof(int) * len);
-	while (i < len)
-	{
-		stack->a[i] = data[i]; //i?
-		i++;
-	}
-	stack->last_a = &len;
+	len = 0;
+	stack->a = malloc(sizeof(int) * (ac - 1));
+	stack->b = malloc(sizeof(int) * (ac - 1));
+	while (i < ac)
+		stack->a[len++] = ft_superatoi(str[i++]);
+	stack->last_a = len;
 	stack->last_b = 0;
 }
 
@@ -75,8 +101,8 @@ checkData	input_check(char *str)
 {
 	int		size;
 	int		*data;
-	int		atoid_num;
 	checkData	result;
+	int		num;
 
 	size = 0;
 	result.valid = true;
@@ -85,12 +111,12 @@ checkData	input_check(char *str)
 		if (!syntax_err(str))
 		{
 			result.valid = false;
-			break ;
+			return (result);
 		}
 		if (ft_isdigit(*str))
 		{
-			atoid_num = ft_atoi(str);
-			data = &atoid_num;
+			num = ft_atol(str);
+			data = &num;
 		}
 		if (!data)
 		{
@@ -110,7 +136,20 @@ checkData	input_check(char *str)
 	return (result);
 }
 
-t_stack	init_stack(int ac, char **av)
+static void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
+t_stack	*init_stack(int ac, char **av)
 {
 	t_stack	*stack;
 	char	**str;
@@ -125,25 +164,23 @@ t_stack	init_stack(int ac, char **av)
 	{
 		str = ft_split(av[1], ' ');
 		if (!str)
-			ft_error(stack); // FIX THIS ---> change 
-		checked = input_check(*str);
-		if (!checked.valid)
-			ft_error(stack);
-		while (checked.parsed_data[len])
+			ft_error("Split failed");
+		while (str[len])
 			len++;
-		stack = malloc(len * sizeof(t_stack)); //?
-		fill_stack(len, checked.parsed_data, stack); //?
+		stack = malloc(sizeof(t_stack));
+		fill_stack(len, str, stack, 0);
+		free_matrix(str);
 	}
 	else if (ac >= 3)
 	{
-		ft_printf("hi there"); //
-		stack = malloc((ac - 1) * sizeof(t_stack));
-		fill_stack(len, checked.parsed_data, stack);
+		stack = malloc(sizeof(t_stack));
+		fill_stack(ac, av, stack, 1);
 	}
 	else
-		ft_error(stack);
-	free(str);
-	return (*stack);
+		ft_error("Wrong number of args.");
+	if (stack->last_a == 1)
+		ft_exit(stack);
+	return (stack);
 }
 
 void	ft_exit(t_stack *stack)
@@ -161,9 +198,9 @@ void	print_stack(t_stack *stack)
 
 	i = 0;
 	if (stack == NULL || stack->a == NULL || stack->last_a == 0)
-		ft_error(stack);
-	ft_printf("Unsorted Stack passes checks!: \n");
-	while (i < *(stack->last_a))
+		ft_error("Empty Stack");
+	ft_printf("Stack: \n");
+	while (i < stack->last_a)
 	{
 		ft_printf("%d\n", stack->a[i]);
 		i++;
@@ -174,14 +211,19 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack;
 
-	stack = malloc(sizeof(t_stack));
+	stack = NULL;
+	//stack = malloc(sizeof(t_stack));
 	if (ac == 1 || (ac == 2 && !av[1][0]))
 	{
-		ft_printf("Not enough args");
-		return (1); // 0 or 1?
+		ft_error("Not enough args");
+		return (1);
 	}
-	*stack = init_stack(ac, av);
+	else if (ac < 2)
+		return (0);
+	stack = init_stack(ac, av);
+	if (!stack)
+		ft_error("Initializing Stack");
 	print_stack(stack);
-	ft_exit(stack); //new
+	ft_exit(stack);
 	return (0);
 }

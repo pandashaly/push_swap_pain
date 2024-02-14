@@ -15,7 +15,7 @@ RED=\033[1;31m
 GREEN=\033[1;32m
 NC=\033[0m
 
-CCFLAGS = cc -Wall -Wextra -Werror -g
+CCFLAGS = cc -g
 RM = rm -rf
 NAME = push_swap
 
