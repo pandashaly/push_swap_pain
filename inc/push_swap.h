@@ -35,7 +35,7 @@ typedef	struct
 
 bool	syntax_err(int *data);
 void	dup_err(int *data, int size);
-bool	stack_sorted(t_stack *stack);
+bool	stack_sorted(int *stack, int size);
 void	ft_error(char *type);
 void	fill_stack(int len, char **str, t_stack *stack, int i);
 checkData	input_check(t_stack *stack);

@@ -25,6 +25,7 @@ LIBFT_D = libft
 INC = inc
 
 SRCS = main.c \
+	utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

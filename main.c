@@ -208,6 +208,10 @@ int	main(int ac, char **av)
 	if (!stack)
 		ft_error("Initializing Stack");
 	print_stack(stack);
+	if (stack_sorted(stack->a, stack->last_a))
+		ft_printf("Stack sorted\n");
+	else if (!stack_sorted(stack->a, stack->last_a))
+		ft_printf("Stack unsorted\n");
 	ft_exit(stack);
 	return (0);
 }
