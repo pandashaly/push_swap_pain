@@ -23,8 +23,8 @@ typedef struct	s_stack
 {
 	int	*a;
 	int	*b;
-	int	*last_a;
-	int	*last_b;
+	int	last_a;
+	int	last_b;
 }	t_stack;
 
 typedef	struct

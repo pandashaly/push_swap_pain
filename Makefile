@@ -15,7 +15,7 @@ RED=\033[1;31m
 GREEN=\033[1;32m
 NC=\033[0m
 
-CCFLAGS = cc -g
+CCFLAGS = cc -Wall -Wextra -Werror -g
 RM = rm -rf
 NAME = push_swap
 
@@ -51,7 +51,7 @@ $(NAME): $(OBJS)
 clean:
 	@echo "[$(RED)PUSH_SWAP$(NC)] Cleaning object files..."
 			$(MAKE) -C $(LIBFT_D) clean
-			@$(RM) $(OBJ_DIR)
+			@$(RM) $(OBJS)
 
 fclean: clean
 	@echo "[$(RED)PUSH_SWAP$(NC)] Cleaning executable file..."
