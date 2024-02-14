@@ -51,7 +51,7 @@ $(NAME): $(OBJS)
 clean:
 	@echo "[$(RED)PUSH_SWAP$(NC)] Cleaning object files..."
 			$(MAKE) -C $(LIBFT_D) clean
-			@$(RM) $(OBJS)
+			@$(RM) $(OBJS) $(OBJ_DIR)
 
 fclean: clean
 	@echo "[$(RED)PUSH_SWAP$(NC)] Cleaning executable file..."

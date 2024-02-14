@@ -33,11 +33,12 @@ typedef	struct
 	bool	valid;
 }	checkData;
 
-bool	syntax_err(char *str);
-bool	dup_err(int *data, int size);
+bool	syntax_err(int *data);
+void	dup_err(int *data, int size);
+bool	stack_sorted(t_stack *stack);
 void	ft_error(char *type);
 void	fill_stack(int len, char **str, t_stack *stack, int i);
-checkData	input_check(char *str);
+checkData	input_check(t_stack *stack);
 t_stack	*init_stack(int ac, char **av);
 void	ft_exit(t_stack *stack);
 int	ft_superatoi(char *str);

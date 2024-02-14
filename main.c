@@ -41,7 +41,7 @@ int	ft_superatoi(char *str)
 	return (r * s);
 }
 
-bool	dup_err(int *data, int size)
+void	dup_err(int *data, int size)
 {
 	int	i;
 	int	j;
@@ -54,24 +54,23 @@ bool	dup_err(int *data, int size)
 		while (j < size)
 		{
 			if (data[i] == data[j])
-				return false;
+				ft_error("Duplicate found");
 			j++;
 		}
 		i++;
 		j = i + 1;
 	}
-	return true;
 }
 
-bool	syntax_err(char *str)
+bool	syntax_err(int *data)
 {
-	if (!(ft_issign(*str) || ft_isdigit(*str)))
+	if (!(ft_issign(*data) || ft_isdigit(*data)))
 		return false;
-	if ((ft_issign(*str)) && !(ft_isdigit(str[1])))
+	if ((ft_issign(*data)) && !(ft_isdigit(data[1])))
 		return false;
-	while (*++str)
+	while (*++data)
 	{
-		if (!(ft_isdigit(*str)))
+		if (!(ft_isdigit(*data)))
 			return false;
 	}
 	return true;
@@ -79,7 +78,6 @@ bool	syntax_err(char *str)
 
 void	ft_error(char *type)
 {
-	//ft_exit(stack);
 	ft_printf("Error! %s", type);
 	exit (EXIT_FAILURE);
 }
@@ -93,46 +91,35 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	stack->b = malloc(sizeof(int) * (ac - 1));
 	while (i < ac)
 		stack->a[len++] = ft_superatoi(str[i++]);
+	dup_err(stack->a, len);
 	stack->last_a = len;
 	stack->last_b = 0;
 }
 
-checkData	input_check(char *str)
+checkData	input_check(t_stack *stack)
 {
 	int		size;
 	int		*data;
 	checkData	result;
-	int		num;
 
 	size = 0;
 	result.valid = true;
-	while (*str)
+	data = stack->a;
+	while (size < stack->last_a)
 	{
-		if (!syntax_err(str))
+		if (!syntax_err(data))
 		{
 			result.valid = false;
 			return (result);
 		}
-		if (ft_isdigit(*str))
-		{
-			num = ft_atol(str);
-			data = &num;
-		}
 		if (!data)
 		{
 			result.valid = false;
+			ft_error("Stack is empty");
 			break ;
 		}
-		while (data[size])
-			size++;
-		if (!dup_err(data, size))
-		{
-			result.valid = false;
-			break ;
-		}
-		str++;
+		size++;
 	}
-	result.parsed_data = data;
 	return (result);
 }
 
@@ -154,12 +141,10 @@ t_stack	*init_stack(int ac, char **av)
 	t_stack	*stack;
 	char	**str;
 	int	len;
-	checkData checked;
 
 	str = NULL;
 	len = 0;
 	stack = NULL;
-	checked.parsed_data = NULL;
 	if (ac == 2)
 	{
 		str = ft_split(av[1], ' ');
@@ -212,7 +197,6 @@ int	main(int ac, char **av)
 	t_stack	*stack;
 
 	stack = NULL;
-	//stack = malloc(sizeof(t_stack));
 	if (ac == 1 || (ac == 2 && !av[1][0]))
 	{
 		ft_error("Not enough args");
