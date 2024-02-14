@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:54:57 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/11 21:01:18 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:47:54 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_superatoi(char *str)
 {
-	long int		r;
+	long int	r;
 	int			s;
 	int			i;
 
@@ -65,15 +65,15 @@ void	dup_err(int *data, int size)
 bool	syntax_err(int *data)
 {
 	if (!(ft_issign(*data) || ft_isdigit(*data)))
-		return false;
+		return (false);
 	if ((ft_issign(*data)) && !(ft_isdigit(data[1])))
-		return false;
+		return (false);
 	while (*++data)
 	{
 		if (!(ft_isdigit(*data)))
-			return false;
+			return (false);
 	}
-	return true;
+	return (true);
 }
 
 void	ft_error(char *type)
@@ -87,8 +87,8 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	int	len;
 
 	len = 0;
-	stack->a = malloc(sizeof(int) * (ac - 1));
-	stack->b = malloc(sizeof(int) * (ac - 1));
+	stack->a = (int *)malloc(sizeof(int) * (ac - 1));
+	stack->b = (int *)malloc(sizeof(int) * (ac - 1));
 	while (i < ac)
 		stack->a[len++] = ft_superatoi(str[i++]);
 	dup_err(stack->a, len);
@@ -98,8 +98,8 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 
 checkData	input_check(t_stack *stack)
 {
-	int		size;
-	int		*data;
+	int			size;
+	int			*data;
 	checkData	result;
 
 	size = 0;
@@ -163,8 +163,6 @@ t_stack	*init_stack(int ac, char **av)
 	}
 	else
 		ft_error("Wrong number of args.");
-	if (stack->last_a == 1)
-		ft_exit(stack);
 	return (stack);
 }
 
@@ -207,11 +205,12 @@ int	main(int ac, char **av)
 	stack = init_stack(ac, av);
 	if (!stack)
 		ft_error("Initializing Stack");
-	print_stack(stack);
+	sort_brain(stack);
 	if (stack_sorted(stack->a, stack->last_a))
 		ft_printf("Stack sorted\n");
 	else if (!stack_sorted(stack->a, stack->last_a))
 		ft_printf("Stack unsorted\n");
+	print_stack(stack);
 	ft_exit(stack);
 	return (0);
 }

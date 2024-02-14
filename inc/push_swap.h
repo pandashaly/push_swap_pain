@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:04 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/11 20:59:10 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:39:22 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../libft/inc/ft_printf.h"
 # include <unistd.h>
 
-typedef struct	s_stack
+typedef	struct s_stack
 {
 	int	*a;
 	int	*b;
@@ -27,7 +27,7 @@ typedef struct	s_stack
 	int	last_b;
 }	t_stack;
 
-typedef	struct
+typedef	struct checkData
 {
 	int	*parsed_data;
 	bool	valid;
@@ -42,5 +42,22 @@ checkData	input_check(t_stack *stack);
 t_stack	*init_stack(int ac, char **av);
 void	ft_exit(t_stack *stack);
 int	ft_superatoi(char *str);
+
+int	sort_brain(t_stack *stack);
+void	smol_sort(t_stack *stack);
+int	sa(t_stack *stack);
+int	sb(t_stack *stack);
+int	ss(t_stack *stack);
+
+int	ra(t_stack *stack);
+int	rb(t_stack *stack);
+int	rr(t_stack *stack);
+
+int	rra(t_stack *stack);
+int	rrb(t_stack *stack);
+int	rrr(t_stack *stack);
+
+int	pa(t_stack *stack);
+int	pb(t_stack *stack);
 
 #endif

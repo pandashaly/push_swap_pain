@@ -6,7 +6,7 @@
 #    By: ssottori <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 19:29:37 by ssottori          #+#    #+#              #
-#    Updated: 2024/02/11 20:46:44 by ssottori         ###   ########.fr        #
+#    Updated: 2024/02/14 19:31:29 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ INC = inc
 
 SRCS = main.c \
 	utils.c \
+	push.c \
+	rotate.c \
+	rev_rotate.c \
 
 OBJS = $(SRCS:.c=.o)
 
