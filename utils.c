@@ -43,24 +43,24 @@ int	sort_brain(t_stack *stack)
 void	smol_sort(t_stack *stack)
 {
 	if ((stack->a[0] < stack->a[1]) && (stack->a[0] < stack->a[2])
-		&& (stack->a[1] > stack->a[2]))
+		&& (stack->a[1] > stack->a[2])) // 1 3 2
 	{
 		sa(stack);
 		ra(stack);
 	}
 	else if ((stack->a[0] > stack->a[1]) && (stack->a[0] > stack->a[2])
-		&& (stack->a[1] > stack->a[2]))
+		&& (stack->a[1] > stack->a[2])) // 3 2 1
 	{
 		sa(stack);
 		rra(stack);
 	}
 	else if ((stack->a[0] < stack->a[1]) && (stack->a[0] > stack->a[2])
-		&& (stack->a[1] > stack->a[2]))
+		&& (stack->a[1] > stack->a[2])) // 2 3 1
 		rra(stack);
 	else if ((stack->a[0] > stack->a[1]) && (stack->a[0] > stack->a[2])
-		&& (stack->a[1] < stack->a[2]))
+		&& (stack->a[1] < stack->a[2])) // 3 1 2
 		ra(stack);
 	else if ((stack->a[0] > stack->a[1]) && (stack->a[0] < stack->a[2])
-		&& (stack->a[1] < stack->a[2]))
+		&& (stack->a[1] < stack->a[2])) // 2 1 3
 		sa(stack);
 }
