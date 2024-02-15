@@ -6,7 +6,7 @@
 #    By: ssottori <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 19:29:37 by ssottori          #+#    #+#              #
-#    Updated: 2024/02/14 19:31:29 by ssottori         ###   ########.fr        #
+#    Updated: 2024/02/15 21:52:19 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,15 @@ OBJ_DIR = obj
 LIBFT_D = libft
 INC = inc
 
-SRCS = main.c \
-	utils.c \
-	push.c \
-	rotate.c \
-	rev_rotate.c \
+SRCS = push_swap.c \
+	init_stack.c \
+	ft_error.c \
+	sort_brain.c \
+	smol_sort.c \
+	commands/rotate.c \
+	commands/swap.c \
+	commands/push.c \
+	commands/rev_rotate.c \
 
 OBJS = $(SRCS:.c=.o)
 
