@@ -29,6 +29,7 @@ SRCS = push_swap.c \
 	ft_error.c \
 	sort_brain.c \
 	smol_sort.c \
+	chunky_sort.c \
 	commands/rotate.c \
 	commands/swap.c \
 	commands/push.c \

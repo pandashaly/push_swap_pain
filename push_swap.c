@@ -25,6 +25,7 @@ void	print_stack(t_stack *stack)
 		ft_printf("%d\n", stack->a[i]);
 		i++;
 	}
+	ft_printf("Stack len is %d\n", stack->last_a);
 }
 
 int	main(int ac, char **av)

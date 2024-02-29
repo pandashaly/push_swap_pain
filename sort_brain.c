@@ -26,6 +26,30 @@ bool	stack_sorted(int *stack, int size)
 	return (true);
 }
 
+bool	stack_sorted_desc(int *stack, int size)
+{
+	int	i;
+
+	i = 1;
+	while (1 < size)
+	{
+		if (stack[i - 1] < stack[i])
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+int	push_pop(t_stack *stack, int size, int flag)
+{
+	if (flag == 1)
+		pb(stack);
+	else if (flag == 0)
+		pa(stack);
+	size--;
+	return (size);
+}
+
 int	sort_brain(t_stack *stack)
 {
 	if (!stack_sorted(stack->a, stack->last_a))
@@ -34,8 +58,8 @@ int	sort_brain(t_stack *stack)
 			sa(stack);
 		else if (stack->last_a == 3)
 			smol_sort(stack);
-		//else
-			//chunky_sort(stack, stack->last_a, 0);
+		else
+			chunky_sort(stack, stack->last_a, 0);
 	}
 	return (0);
 }

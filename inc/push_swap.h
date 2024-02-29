@@ -41,6 +41,7 @@ void		fill_stack(int len, char **str, t_stack *stack, int i);
 checkData	input_check(t_stack *stack);
 t_stack		*init_stack(int ac, char **av);
 void		ft_exit(t_stack *stack);
+int		stack_len(int *stack, int size);
 int			ft_superatoi(char *str);
 
 int			sort_brain(t_stack *stack);
