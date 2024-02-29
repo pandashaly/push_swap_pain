@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack)
+/*static void	print_stack(t_stack *stack)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ void	print_stack(t_stack *stack)
 		i++;
 	}
 	ft_printf("Stack len is %d\n", stack->last_a);
-}
+}*/
 
 int	main(int ac, char **av)
 {
@@ -41,11 +41,11 @@ int	main(int ac, char **av)
 	if (!stack)
 		ft_error("Initializing Stack");
 	sort_brain(stack);
-	if (stack_sorted(stack->a, stack->last_a))
+	/*if (stack_sorted(stack->a, stack->last_a))
 		ft_printf("Stack sorted\n");
 	else if (!stack_sorted(stack->a, stack->last_a))
 		ft_printf("Stack unsorted\n");
-	print_stack(stack);
+	print_stack(stack);*/
 	ft_exit(stack);
 	return (0);
 }

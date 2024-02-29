@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/15 21:46:38 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:19:50 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	free_matrix(char **matrix);
 
 t_stack	*init_stack(int ac, char **av)
 {
-	t_stack	*stack;
-	char	**str;
-	int	len;
+	t_stack		*stack;
+	char		**str;
+	int			len;
 
 	str = NULL;
 	len = 0;
@@ -94,7 +94,6 @@ void	dup_err(int *data, int size)
 
 	i = 0;
 	j = 1;
-
 	while (i < size)
 	{
 		while (j < size)

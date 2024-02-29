@@ -6,13 +6,13 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:54:34 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/16 16:42:56 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:24:26 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	quicksort_a(t_stack *stack, int size, int rotate_count)
+int	chunky_sort(t_stack *stack, int size, int rotate_count)
 {
 	int	pivot;
 	int	numbers;
@@ -22,7 +22,7 @@ int	quicksort_a(t_stack *stack, int size, int rotate_count)
 	numbers = size;
 	if (size <= 3)
 	{
-		quicksort_3_a_b(stack, size);
+		qs_3ab(stack, size);
 		return (1);
 	}
 	if (!rotate_count && !partition(&pivot, stack->a, size))
@@ -36,7 +36,7 @@ int	quicksort_a(t_stack *stack, int size, int rotate_count)
 	}
 	while (rotate_count--)
 		rra(stack);
-	return (quicksort_a(stack, numbers / 2 + numbers % 2, 0)
+	return (chunky_sort(stack, numbers / 2 + numbers % 2, 0)
 		&& quicksort_b(stack, numbers / 2, 0));
 	return (1);
 }
@@ -55,7 +55,7 @@ int	quicksort_b(t_stack *stack, int size, int rotate_count)
 		return (1);
 	}
 	numbers = size;
-	if (!partition(&pivot, stack->b, dim))
+	if (!partition(&pivot, stack->b, size))
 		return (0);
 	while (size != numbers / 2)
 	{
@@ -66,7 +66,7 @@ int	quicksort_b(t_stack *stack, int size, int rotate_count)
 	}
 	while (numbers / 2 != stack->last_b && rotate_count--)
 		rrb(stack);
-	return (quicksort_a(stack, numbers / 2 + numbers % 2, 0)
+	return (chunky_sort(stack, numbers / 2 + numbers % 2, 0)
 		&& quicksort_b(stack, numbers / 2, 0));
 }
 
@@ -74,7 +74,7 @@ int	partition(int *pivot, int *stack, int size)
 {
 	int	i;
 	int	j;
-	int 	*tmp;
+	int	*tmp;
 
 	tmp = (int *)malloc(sizeof(int) * size);
 	if (!tmp)
@@ -107,7 +107,7 @@ void	qs_3ab(t_stack *stack, int size)
 				sa(stack);
 			else if (size == 3 && !(stack->a[2] > stack->a[0]
 					&& stack->a[2] > stack->a[1]))
-				size = push_pop(stack, dim, 1);
+				size = push_pop(stack, size, 1);
 			else if (stack->a[0] > stack->a[1])
 				sa(stack);
 			else if (size++)
