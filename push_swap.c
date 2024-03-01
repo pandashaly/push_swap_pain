@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:01:24 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/15 21:45:20 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:46:44 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,8 @@ int	main(int ac, char **av)
 		return (0);
 	stack = init_stack(ac, av);
 	if (!stack)
-		ft_error("Initializing Stack");
+		ft_error("Empty Stack");
 	sort_brain(stack);
-	/*if (stack_sorted(stack->a, stack->last_a))
-		ft_printf("Stack sorted\n");
-	else if (!stack_sorted(stack->a, stack->last_a))
-		ft_printf("Stack unsorted\n");
-	print_stack(stack);*/
 	ft_exit(stack);
 	return (0);
 }

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/01 16:43:33 by ssottori          #+#    #+#             */
+/*   Updated: 2024/03/01 16:54:19 by ssottori         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	find_smol(t_stack *stack)
 {
-	int		smol;
+	int	smol;
 	int	i;
 
 	i = 0;
@@ -20,7 +32,7 @@ void	sort_five(t_stack *stack)
 {
 	if (stack->last_a == 5)
 	{
-		while(!stack_sorted(stack->a, stack->last_a))
+		while (!stack_sorted(stack->a, stack->last_a))
 		{
 			if (stack->a[0] > stack->a[1])
 				sa(stack);
@@ -31,14 +43,7 @@ void	sort_five(t_stack *stack)
 			else if (stack->a[0] > stack->a[4])
 				pb(stack);
 			else
-			{
-				if (stack->a[1] < stack->a[2] && stack->a[1] < stack->a[3] && stack->a[1] < stack->a[4])
-					ra(stack);
-		    		else if (stack->a[2] < stack->a[3] && stack->a[2] < stack->a[4])
-					rra(stack);
-				else
-					pb(stack);
-			}
+				pb(stack);
 		}
 	}
 }
@@ -49,7 +54,8 @@ void	sort_ten(t_stack *stack)
 	{
 		while (!stack_sorted(stack->a, stack->last_a))
 		{
-			if (stack->a[0] == find_smol(stack) || stack->a [0] == find_beeg(stack))
+			if (stack->a[0] == find_smol(stack)
+				|| stack->a [0] == find_beeg(stack))
 				pb(stack);
 			else
 				ra(stack);
@@ -61,7 +67,7 @@ void	sort_ten(t_stack *stack)
 
 int	find_beeg(t_stack *stack)
 {
-	int		beeg;
+	int	beeg;
 	int	i;
 
 	i = stack->last_b;
