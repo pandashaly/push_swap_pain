@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/29 15:19:50 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:37:13 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_stack	*init_stack(int ac, char **av)
 	char		**str;
 	int			len;
 
-	str = NULL;
 	len = 0;
 	stack = NULL;
+	stack = malloc(sizeof(t_stack));
 	if (ac == 2)
 	{
 		str = ft_split(av[1], ' ');
@@ -30,15 +30,11 @@ t_stack	*init_stack(int ac, char **av)
 			ft_error("Split failed");
 		while (str[len])
 			len++;
-		stack = malloc(sizeof(t_stack));
 		fill_stack(len, str, stack, 0);
 		free_matrix(str);
 	}
 	else if (ac >= 3)
-	{
-		stack = malloc(sizeof(t_stack));
 		fill_stack(ac, av, stack, 1);
-	}
 	else
 		exit(EXIT_FAILURE);
 	return (stack);
