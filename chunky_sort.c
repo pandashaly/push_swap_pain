@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:54:34 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/01 14:16:41 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/01 19:47:16 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 {
 	int	pivot;
 	int	numbers;
+	int	og_size;
 
+	og_size = size;
 	if (stack_sorted(stack->a, size) == 1)
 		return (1);
 	numbers = size;
@@ -34,7 +36,7 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 		else if (++rotate_count)
 			ra(stack);
 	}
-	while (rotate_count--)
+	while (rotate_count-- && og_size != stack->last_a + stack->last_b)
 		rra(stack);
 	return (chunky_sort(stack, numbers / 2 + numbers % 2, 0)
 		&& quicksort_b(stack, numbers / 2, 0));
