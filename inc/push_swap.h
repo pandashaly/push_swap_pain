@@ -75,4 +75,9 @@ int			rrr(t_stack *stack);
 int			pa(t_stack *stack);
 int			pb(t_stack *stack);
 
+int	find_smol(t_stack *stack);
+int	find_beeg(t_stack *stack);
+void	sort_five(t_stack *stack);
+void	sort_ten(t_stack *stack);
+
 #endif
