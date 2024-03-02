@@ -12,6 +12,17 @@
 
 #include "push_swap.h"
 
+/*
+** Function: stack_sorted
+** -----------------------
+** Checks if the given stack is sorted in ascending order.
+**
+** stack: Pointer to the stack array.
+** size: Size of the stack.
+**
+** returns: true if the stack is sorted, false otherwise.
+*/
+
 bool	stack_sorted(int *stack, int size)
 {
 	int	i;
@@ -25,6 +36,17 @@ bool	stack_sorted(int *stack, int size)
 	}
 	return (true);
 }
+
+/*
+** Function: stack_sorted_desc
+** ----------------------------
+** Checks if the given stack is sorted in descending order.
+**
+** stack: Pointer to the stack array.
+** size: Size of the stack.
+**
+** returns: true if the stack is sorted in descending order, false otherwise.
+*/
 
 bool	stack_sorted_desc(int *stack, int size)
 {
@@ -40,6 +62,18 @@ bool	stack_sorted_desc(int *stack, int size)
 	return (true);
 }
 
+/*
+** Function: push_pop
+** -------------------
+** Pushes or pops an element from a stack, depending on the flag value.
+**
+** stack: Pointer to the stack structure.
+** size: Current size of the stack.
+** flag: Flag indicating the operation (1 for push, 0 for pop).
+**
+** returns: Updated size of the stack after the operation.
+*/
+
 int	push_pop(t_stack *stack, int size, int flag)
 {
 	if (flag == 1)
@@ -49,6 +83,16 @@ int	push_pop(t_stack *stack, int size, int flag)
 	size--;
 	return (size);
 }
+
+/*
+** Function: sort_brain
+** ---------------------
+** Sorts the stack using appropriate sorting functions based on its size.
+**
+** stack: Pointer to the stack structure.
+**
+** returns: Always returns 0.
+*/
 
 int	sort_brain(t_stack *stack)
 {

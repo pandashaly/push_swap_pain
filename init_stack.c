@@ -14,6 +14,19 @@
 
 static void	free_matrix(char **matrix);
 
+/*
+** Function: init_stack
+** ---------------------
+** Initializes the stack structure based on the command line args.
+** If there's only one arg, it splits it into tokens and fills the stack.
+** Otherwise, it directly fills the stack.
+**
+** ac: The number of command line arguments.
+** av: Array of command line arguments.
+**
+** returns: Pointer to the initialized stack structure.
+*/
+
 t_stack	*init_stack(int ac, char **av)
 {
 	t_stack		*stack;
@@ -40,6 +53,22 @@ t_stack	*init_stack(int ac, char **av)
 	return (stack);
 }
 
+/*
+** Function: fill_stack
+** ---------------------
+** Fills the stack with integers from the given array of strings.
+** Converts the string tokens to integers with atoi and stores them in the 
+** stack's 'a' array.
+** Then calls dup_err to check for duplicate numebrs.
+**
+** ac: The number of args or strings in the array.
+** str: Array of strings containing integer representations.
+** stack: Pointer to the stack structure.
+** i: Index to start filling the stack from.
+**
+** returns: None.
+*/
+
 void	fill_stack(int ac, char **str, t_stack *stack, int i)
 {
 	int	len;
@@ -53,6 +82,17 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	stack->last_a = len;
 	stack->last_b = 0;
 }
+
+/*
+** Function: ft_superatoi
+** -----------------------
+** Converts a string representation of an integer to an integer.
+** Handles whitespace, signs, checks for non-numeric characters and handles overflow.
+**
+** str: String containing the integer representation.
+**
+** returns: Integer representation of the string.
+*/
 
 int	ft_superatoi(char *str)
 {
@@ -83,6 +123,18 @@ int	ft_superatoi(char *str)
 	return (r * s);
 }
 
+/*
+** Function: dup_err
+** ------------------
+** Checks for duplicate elements in the integer array.
+** If duplicates are found, it displays an error message and exits the program.
+**
+** data: Array of integers.
+** size: Size of the array.
+**
+** returns: None.
+*/
+
 void	dup_err(int *data, int size)
 {
 	int	i;
@@ -102,6 +154,16 @@ void	dup_err(int *data, int size)
 		j = i + 1;
 	}
 }
+
+/*
+** Function: free_matrix
+** ----------------------
+** Frees memory allocated for a 2D array of strings.
+**
+** matrix: Array of strings.
+**
+** returns: None.
+*/
 
 static void	free_matrix(char **matrix)
 {

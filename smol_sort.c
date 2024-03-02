@@ -12,6 +12,15 @@
 
 #include "push_swap.h"
 
+/*
+** Function: smol_sort
+** --------------------
+** Sorts a stack of size 3 using a predefined set of moves.
+** stack: Pointer to the stack structure.
+**
+** returns: None.
+*/
+
 void	smol_sort(t_stack *stack)
 {
 	if ((stack->a[0] < stack->a[1]) && (stack->a[0] < stack->a[2])
@@ -36,6 +45,18 @@ void	smol_sort(t_stack *stack)
 		&& (stack->a[1] < stack->a[2]))
 		sa(stack);
 }
+
+/*
+** Function: smol_sort_b
+** -----------------------
+** Sorts a stack of size 1, 2, or 3 using predefined moves.
+** Moves elements from stack B to stack A as needed to sort.
+**
+** stack: Pointer to the stack structure.
+** size: Size of the stack B (stack->last_b)
+**
+** returns: 0.
+*/
 
 int	smol_sort_b(t_stack *stack, int size)
 {
@@ -65,6 +86,17 @@ int	smol_sort_b(t_stack *stack, int size)
 	}
 	return (0);
 }
+
+/*
+** Function: tmp_sort
+** ------------------
+** Sorts an array of integers in ascending order using bubble sort.
+**
+** tmp_s: Pointer to the array of integers.
+** size: Size of the array.
+**
+** returns: None.
+*/
 
 void	tmp_sort(int *tmp_s, int size)
 {

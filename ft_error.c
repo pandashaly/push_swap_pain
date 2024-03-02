@@ -12,11 +12,29 @@
 
 #include "push_swap.h"
 
+/*
+** Function: ft_error
+** -------------------
+** Displays an error message & exits the program with failure status.
+** type: Pointer to a string containing the type of error.
+**
+** returns: None.
+*/
+
 void	ft_error(char *type)
 {
 	ft_printf("Error! %s", type);
 	exit (EXIT_FAILURE);
 }
+
+/*
+** Function: ft_exit
+** ------------------
+** Frees the memory allocated for the stack structure and its arrays.
+** stack: Pointer to the stack structure.
+**
+** returns: None.
+*/
 
 void	ft_exit(t_stack *stack)
 {
