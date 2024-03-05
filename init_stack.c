@@ -87,8 +87,7 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 ** Function: ft_superatoi
 ** -----------------------
 ** Converts a string representation of an integer to an integer.
-** Handles whitespace, signs, checks for non-numeric characters and 
-** handles overflow.
+** Handles whitespace, signs, checks for non-numeric characters and handles overflow.
 **
 ** str: String containing the integer representation.
 **

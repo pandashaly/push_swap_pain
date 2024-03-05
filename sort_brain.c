@@ -102,7 +102,9 @@ int	sort_brain(t_stack *stack)
 			sa(stack);
 		else if (stack->last_a == 3)
 			smol_sort(stack);
-		else if (stack->last_a == 10)
+		else if (stack->last_a == 5)
+			sort_five(stack);
+		else if (stack->last_a <= 10)
 			sort_ten(stack);
 		else
 			chunky_sort(stack, stack->last_a, 0);
