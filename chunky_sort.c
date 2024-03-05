@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:54:34 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/05 16:40:14 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:44:20 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 		else if (++rotate_count)
 			ra(stack);
 	}
-	rra_round(stack, rotate_count, numbers, stack->last_a);
+	rra_round(stack, rotate_count, numbers, size); 
 	return (chunky_sort(stack, numbers / 2 + numbers % 2, 0)
 		&& quicksort_b(stack, numbers / 2, 0));
 	return (1);
