@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/01 17:37:13 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:32:41 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 ** Function: ft_superatoi
 ** -----------------------
 ** Converts a string representation of an integer to an integer.
-** Handles whitespace, signs, checks for non-numeric characters and handles overflow.
+** Handles whitespace, signs, checks for non-numeric characters and 
+** handles overflow.
 **
 ** str: String containing the integer representation.
 **

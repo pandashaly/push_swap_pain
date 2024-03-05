@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:14:30 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/15 21:14:52 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:33:58 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ int	sort_brain(t_stack *stack)
 			sa(stack);
 		else if (stack->last_a == 3)
 			smol_sort(stack);
-		else if (stack->last_a == 5)
-			sort_five(stack);
 		else if (stack->last_a <= 10)
 			sort_ten(stack);
 		else
