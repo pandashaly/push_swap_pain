@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:51:05 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/15 20:52:59 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:32:53 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 ** returns: None.
 */
 
-void	ft_error(char *type)
+void	ft_error(char *type, t_stack *stack)
 {
 	ft_printf("Error! %s", type);
+	ft_exit(stack);
 	exit (EXIT_FAILURE);
 }
 

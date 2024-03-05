@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/04 16:32:41 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:49:54 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,19 @@ t_stack	*init_stack(int ac, char **av)
 	int			len;
 
 	len = 0;
-	stack = NULL;
 	stack = malloc(sizeof(t_stack));
 	if (ac == 2)
 	{
 		str = ft_split(av[1], ' ');
 		if (!str)
-			ft_error("Split failed");
+			ft_error("Split failed", stack);
 		while (str[len])
 			len++;
 		fill_stack(len, str, stack, 0);
 		free_matrix(str);
 	}
 	else if (ac >= 3)
-		fill_stack(ac, av, stack, 1);
+		fill_stack(ac - 1, av, stack, 1);
 	else
 		exit(EXIT_FAILURE);
 	return (stack);
@@ -74,11 +73,12 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	int	len;
 
 	len = 0;
-	stack->a = (int *)malloc(sizeof(int) * (ac - 1));
-	stack->b = (int *)malloc(sizeof(int) * (ac - 1));
+	stack->a = (int *)malloc(sizeof(int) * (ac));
+	stack->b = (int *)malloc(sizeof(int) * (ac));
 	while (i < ac)
-		stack->a[len++] = ft_superatoi(str[i++]);
-	dup_err(stack->a, len);
+		stack->a[len++] = ft_superatoi(str[i++], str, stack);
+
+	dup_err(stack->a, len, str, stack);
 	stack->last_a = len;
 	stack->last_b = 0;
 }
@@ -95,7 +95,7 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 ** returns: Integer representation of the string.
 */
 
-int	ft_superatoi(char *str)
+int	ft_superatoi(char *str, char **str2, t_stack *stack)
 {
 	long int	r;
 	int			s;
@@ -116,11 +116,17 @@ int	ft_superatoi(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			ft_error("Non numeric character found!");
+		{
+			free_matrix(str2);
+			ft_error("Non numeric character found!", stack);
+		}
 		r = r * 10 + str[i++] - '0';
 	}
 	if (r > 2147483647 || r < -2147483647)
-		ft_error("Out of Range!");
+	{
+		free_matrix(str2);
+		ft_error("Out of Range!", stack);
+	}
 	return (r * s);
 }
 
@@ -136,7 +142,7 @@ int	ft_superatoi(char *str)
 ** returns: None.
 */
 
-void	dup_err(int *data, int size)
+void	dup_err(int *data, int size, char **str, t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -148,7 +154,10 @@ void	dup_err(int *data, int size)
 		while (j < size)
 		{
 			if (data[i] == data[j])
-				ft_error("Duplicate found");
+			{
+				free_matrix(str);
+				ft_error("Duplicate found", stack);
+			}
 			j++;
 		}
 		i++;

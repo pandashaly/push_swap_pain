@@ -27,13 +27,13 @@ typedef struct s_stack
 	int	last_b;
 }	t_stack;
 
-void	dup_err(int *data, int size);
+void	dup_err(int *data, int size, char **str, t_stack *stack);
 bool	stack_sorted(int *stack, int size);
-void	ft_error(char *type);
+void	ft_error(char *type, t_stack *stack);
 void	fill_stack(int len, char **str, t_stack *stack, int i);
 t_stack	*init_stack(int ac, char **av);
 void	ft_exit(t_stack *stack);
-int		ft_superatoi(char *str);
+int		ft_superatoi(char *str, char ** str2, t_stack *stack);
 
 int		sort_brain(t_stack *stack);
 void	smol_sort(t_stack *stack);

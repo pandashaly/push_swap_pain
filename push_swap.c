@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 		return (0);
 	stack = init_stack(ac, av);
 	if (!stack)
-		ft_error("Empty Stack");
+		ft_error("Empty Stack", stack);
 	sort_brain(stack);
 	ft_exit(stack);
 	return (0);

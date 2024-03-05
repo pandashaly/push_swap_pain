@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:43:33 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/01 16:54:19 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:18:53 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	sort_ten(t_stack *stack)
 		while (!stack_sorted(stack->a, stack->last_a))
 		{
 			if (stack->a[0] == find_smol(stack)
-				|| stack->a [0] == find_beeg(stack))
+				|| (stack->last_b >= 1 && stack->a[0] == find_beeg(stack)))
 				pb(stack);
 			else
 				ra(stack);
