@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:54:34 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/01 19:47:16 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:40:14 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 /*
 ** Function: chunky_sort (quicksort_a)
 ** -----------------------
-** This function sorts a stack of integers using the chunky sort algorithm.
+** Sorts a stack of integers using the chunky sort algorithm.
 ** It takes in three parameters: a stack, which contains two arrays (a and b),
 ** the size of the array to be sorted (stack->last_a), and a rotate count (0).
 ** It first checks if the array is already sorted with "stack_sorted".
 ** If it is, it returns 1 indicating that no further sorting needs to be done.
 ** Next, it checks if there are only 3 or fewer elements in the array. 
-If true, it calls "qs_3ab" for sorting.
-** If neither of these conditions is met, it proceeds with chunky sort algorithm.
+** If true, it calls "qs_3ab" for sorting.
+** If neither of these conditions is met, it proceeds with chunky sort algo.
 ** The function chooses a pivot element using the "partition" function.
 ** It then separates the elements into two stacks, A and B, based on 
 their relation to the pivot.
@@ -36,13 +36,22 @@ until all elements are sorted.
 ** returns: 1 if the sorting is successful, 0 otherwise.
 */
 
+static void	rra_round(t_stack *stack, int rotate_count, int numbers, int size)
+{
+	int	og_size;
+
+	og_size = size;
+	while (rotate_count--
+		&& og_size != stack->last_a + stack->last_b
+		&& numbers / 2 != stack->last_a)
+		rra(stack);
+}
+
 int	chunky_sort(t_stack *stack, int size, int rotate_count)
 {
 	int	pivot;
 	int	numbers;
-	//int	og_size;
 
-	//og_size = size;
 	if (stack_sorted(stack->a, size) == 1)
 		return (1);
 	numbers = size;
@@ -60,8 +69,7 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 		else if (++rotate_count)
 			ra(stack);
 	}
-	while (rotate_count-- && numbers != stack->last_a + stack->last_b && numbers / 2 != stack->last_a)
-		rra(stack);
+	rra_round(stack, rotate_count, numbers, stack->last_a);
 	return (chunky_sort(stack, numbers / 2 + numbers % 2, 0)
 		&& quicksort_b(stack, numbers / 2, 0));
 	return (1);
@@ -70,12 +78,12 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 /*
 ** Function: quicksort_b
 ** ----------------------
-** This function sorts the B stack in descending order using the quicksort algorithm.
+** This function sorts the B stack in descending order using the quicksort algo.
 ** It first checks if the B stack is already sorted in descending order.
-** If true, it immediately moves all elements to stack A using the "pa" function.
+** If true, it moves all elements to stack A using the "pa" function.
 ** Next, it checks if there are only 3 or fewer elements in the B stack.
 ** If true, it calls "smol_sort_b" for sorting.
-** If neither of these conditions is met, it proceeds with the quicksort algorithm.
+** If neither of these conditions is met, it proceeds with the quicksort algo.
 ** The function chooses a pivot element using the "partition" function.
 ** It then separates the elements into two sub-arrays, 
 pushing elements to stack A or maintaining them in stack B 
@@ -122,10 +130,11 @@ int	quicksort_b(t_stack *stack, int size, int rotate_count)
 /*
 ** Function: partition
 ** ---------------------
-** This function partitions an array into two sub-arrays based on a pivot element.
-** It first creates a temporary array and copies the elements of the original array.
-** It then sorts the temporary array and selects the pivot as the middle element.
-** The function frees the memory allocated for the temporary array and returns the pivot element.
+** Here we partition an array into two sub-arrays based on pivot element.
+** It first creates a temp array and copies the elements of the original array.
+** It then sorts the temp array and selects the pivot as the mid element.
+** The function frees the memory allocated for the temporary array
+** and returns the pivot element.
 **
 ** pivot: Pointer to store the pivot element.
 ** stack: Pointer to the original array.
@@ -157,7 +166,8 @@ int	partition(int *pivot, int *stack, int size)
 ** Function: qs_3ab
 ** ------------------
 ** This function sorts an array of 3 integers in ascending order.
-** If the array size is 3, it checks for all possible cases and sorts the array accordingly.
+** If the array size is 3, it checks for all possible cases
+** and sorts the array accordingly.
 ** The function performs necessary swap operations using the "sa" function.
 **
 ** stack: Pointer to the stack structure.
@@ -180,7 +190,7 @@ void	qs_3ab(t_stack *stack, int size)
 		while (size != 3 || !(stack->a[0] < stack->a[1]
 				&& stack->a[1] < stack->a[2]))
 		{
-			if (size == 3 && stack->a[0] > stack->a[1] && stack->a[2])
+			if ((size == 3) && (stack->a[0] > stack->a[1] && stack->a[2]))
 				sa(stack);
 			else if (size == 3 && !(stack->a[2] > stack->a[0]
 					&& stack->a[2] > stack->a[1]))
