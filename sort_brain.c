@@ -53,7 +53,7 @@ bool	stack_sorted_desc(int *stack, int size)
 	int	i;
 
 	i = 1;
-	while (1 < size)
+	while (i < size)
 	{
 		if (stack[i - 1] < stack[i])
 			return (false);

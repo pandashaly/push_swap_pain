@@ -69,7 +69,7 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 		else if (++rotate_count)
 			ra(stack);
 	}
-	rra_round(stack, rotate_count, numbers, size); 
+	rra_round(stack, rotate_count, numbers, stack->last_a); 
 	return (chunky_sort(stack, numbers / 2 + numbers % 2, 0)
 		&& quicksort_b(stack, numbers / 2, 0));
 	return (1);

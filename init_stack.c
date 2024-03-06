@@ -46,7 +46,7 @@ t_stack	*init_stack(int ac, char **av)
 		free_matrix(str);
 	}
 	else if (ac >= 3)
-		fill_stack(ac - 1, av, stack, 1);
+		fill_stack(ac, av, stack, 1); //was broken here (ac - 1) breaks it --- alternative?
 	else
 		exit(EXIT_FAILURE);
 	return (stack);
@@ -73,7 +73,7 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	int	len;
 
 	len = 0;
-	stack->a = (int *)malloc(sizeof(int) * (ac));
+	stack->a = (int *)malloc(sizeof(int) * (ac)); //does this need to be ac - 1
 	stack->b = (int *)malloc(sizeof(int) * (ac));
 	while (i < ac)
 		stack->a[len++] = ft_superatoi(str[i++], str, stack);
