@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:54:34 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/05 23:44:20 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/07 21:33:21 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 		else if (++rotate_count)
 			ra(stack);
 	}
-	rra_round(stack, rotate_count, numbers, stack->last_a); 
+	rra_round(stack, rotate_count, numbers, stack->last_a);
 	return (chunky_sort(stack, numbers / 2 + numbers % 2, 0)
 		&& quicksort_b(stack, numbers / 2, 0));
 	return (1);
@@ -79,17 +79,8 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 ** Function: quicksort_b
 ** ----------------------
 ** This function sorts the B stack in descending order using the quicksort algo.
-** It first checks if the B stack is already sorted in descending order.
-** If true, it moves all elements to stack A using the "pa" function.
-** Next, it checks if there are only 3 or fewer elements in the B stack.
-** If true, it calls "smol_sort_b" for sorting.
-** If neither of these conditions is met, it proceeds with the quicksort algo.
-** The function chooses a pivot element using the "partition" function.
-** It then separates the elements into two sub-arrays, 
-pushing elements to stack A or maintaining them in stack B 
-based on their relation to the pivot.
 ** The function recursively calls itself to sort the two sub-arrays 
-until all elements are sorted.
+** until all elements are sorted.
 **
 ** stack: Pointer to the stack structure.
 ** size: Size of the array to be sorted.

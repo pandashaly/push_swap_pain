@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/05 22:49:54 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/07 22:47:23 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_stack	*init_stack(int ac, char **av)
 		free_matrix(str);
 	}
 	else if (ac >= 3)
-		fill_stack(ac, av, stack, 1); //was broken here (ac - 1) breaks it --- alternative?
+		fill_stack(ac, av, stack, 1);
 	else
 		exit(EXIT_FAILURE);
 	return (stack);
@@ -185,5 +185,4 @@ static void	free_matrix(char **matrix)
 		free(matrix[i]);
 		i++;
 	}
-	free(matrix);
 }

@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:51:05 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/05 17:32:53 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/07 22:23:17 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,4 @@ void	ft_exit(t_stack *stack)
 {
 	free(stack->a);
 	free(stack->b);
-	if (stack)
-		free(stack);
-	return ;
 }

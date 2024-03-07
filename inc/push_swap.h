@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:04 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/01 17:01:38 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/07 21:38:29 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_error(char *type, t_stack *stack);
 void	fill_stack(int len, char **str, t_stack *stack, int i);
 t_stack	*init_stack(int ac, char **av);
 void	ft_exit(t_stack *stack);
-int		ft_superatoi(char *str, char ** str2, t_stack *stack);
+int		ft_superatoi(char *str, char **str2, t_stack *stack);
 
 int		sort_brain(t_stack *stack);
 void	smol_sort(t_stack *stack);
