@@ -21,11 +21,9 @@
 
 #include "push_swap.h"
 
-void	signs(char *str)
-
-void	size_matters(long num, t_stack *stack)
+void	size_matters(long num, int sign, char **str2, t_stack *stack)
 {
-	if (r > INT_MAX || r < INT_MIN)
+	if ((sign == -1 && num < INT_MIN) || (sign == 1 && num > INT_MAX))
 	{
 		free_matrix(str2);
 		ft_error("Out of Range!", stack);
@@ -43,22 +41,21 @@ int	ft_superatoi(char *str, char **str2, t_stack *stack)
 	i = 0;
 	while (ft_iswhitespace(str[i]))
 		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		s = -1;
+		if (str[i] == '-')
+			s = -1;
 		i++;
 	}
-	while (str[i])
+	while (ft_isdigit(str[i]))
 	{
-		if (!ft_isdigit(str[i]))
+		r = r * 10 + str[i++] - '0';
+		size_matters(r, s, str2, stack);
+	}
+	if (!ft_isdigit(str[i]))
 		{
 			free_matrix(str2);
 			ft_error("Non numeric character found!", stack);
 		}
-		r = r * 10 + str[i++] - '0';
-		size_matters(r, stack);
-	}
 	return (r * s);
 }

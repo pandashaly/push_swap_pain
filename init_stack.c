@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-static void	free_matrix(char **matrix);
-
 /*
 ** Function: init_stack
 ** ---------------------
@@ -34,19 +32,21 @@ t_stack	*init_stack(int ac, char **av)
 	int			len;
 
 	len = 0;
-	stack = malloc(sizeof(t_stack));
+	str = NULL;
 	if (ac == 2)
 	{
 		str = ft_split(av[1], ' ');
-		if (!str)
-			ft_error("Split failed", stack);
 		while (str[len])
 			len++;
+		stack = malloc(sizeof(t_stack));
 		fill_stack(len, str, stack, 0);
-		free_matrix(str);
+		//free_matrix(str);
 	}
 	else if (ac >= 3)
+	{
+		stack = malloc(sizeof(t_stack));
 		fill_stack(ac, av, stack, 1);
+	}
 	else
 		exit(EXIT_FAILURE);
 	return (stack);
@@ -73,11 +73,10 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	int	len;
 
 	len = 0;
-	stack->a = (int *)malloc(sizeof(int) * (ac)); //does this need to be ac - 1
-	stack->b = (int *)malloc(sizeof(int) * (ac));
+	stack->a = (int *)malloc(sizeof(int) * (ac - 1));
+	stack->b = (int *)malloc(sizeof(int) * (ac - 1));
 	while (i < ac)
 		stack->a[len++] = ft_superatoi(str[i++], str, stack);
-
 	dup_err(stack->a, len, str, stack);
 	stack->last_a = len;
 	stack->last_b = 0;
@@ -95,7 +94,7 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 ** returns: Integer representation of the string.
 */
 
-int	ft_superatoi(char *str, char **str2, t_stack *stack)
+/*int	ft_superatoi(char *str, char **str2, t_stack *stack)
 {
 	long int	r;
 	int			s;
@@ -128,7 +127,7 @@ int	ft_superatoi(char *str, char **str2, t_stack *stack)
 		ft_error("Out of Range!", stack);
 	}
 	return (r * s);
-}
+}*/
 
 /*
 ** Function: dup_err
@@ -175,7 +174,7 @@ void	dup_err(int *data, int size, char **str, t_stack *stack)
 ** returns: None.
 */
 
-static void	free_matrix(char **matrix)
+void	free_matrix(char **matrix)
 {
 	int	i;
 
@@ -185,4 +184,5 @@ static void	free_matrix(char **matrix)
 		free(matrix[i]);
 		i++;
 	}
+	free (matrix);
 }

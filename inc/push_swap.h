@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
 # include "../libft/inc/libft.h"
 # include "../libft/inc/ft_printf.h"
 # include <unistd.h>
@@ -41,6 +42,8 @@ int		smol_sort_b(t_stack *stack, int size);
 void	tmp_sort(int *tmp_s, int size);
 bool	stack_sorted_desc(int *stack, int size);
 int		push_pop(t_stack *stack, int size, int flag);
+void	size_matters(long num, int sign, char **str2, t_stack *stack);
+void	free_matrix(char **matrix);
 
 /*	SORT	*/
 int		chunky_sort(t_stack *stack, int size, int rotate_count);
