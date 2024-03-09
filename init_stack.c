@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/07 22:47:23 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/09 01:53:11 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,61 +73,14 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	int	len;
 
 	len = 0;
-	stack->a = (int *)malloc(sizeof(int) * (ac - 1));
-	stack->b = (int *)malloc(sizeof(int) * (ac - 1));
+	stack->a = (int *)malloc(sizeof(int) * (ac));
+	stack->b = (int *)malloc(sizeof(int) * (ac));
 	while (i < ac)
 		stack->a[len++] = ft_superatoi(str[i++], str, stack);
 	dup_err(stack->a, len, str, stack);
 	stack->last_a = len;
 	stack->last_b = 0;
 }
-
-/*
-** Function: ft_superatoi
-** -----------------------
-** Converts a string representation of an integer to an integer.
-** Handles whitespace, signs, checks for non-numeric characters and 
-** handles overflow.
-**
-** str: String containing the integer representation.
-**
-** returns: Integer representation of the string.
-*/
-
-/*int	ft_superatoi(char *str, char **str2, t_stack *stack)
-{
-	long int	r;
-	int			s;
-	int			i;
-
-	r = 0;
-	s = 1;
-	i = 0;
-	while (ft_iswhitespace(str[i]))
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
-	{
-		s = -1;
-		i++;
-	}
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-		{
-			free_matrix(str2);
-			ft_error("Non numeric character found!", stack);
-		}
-		r = r * 10 + str[i++] - '0';
-	}
-	if (r > 2147483647 || r < -2147483647)
-	{
-		free_matrix(str2);
-		ft_error("Out of Range!", stack);
-	}
-	return (r * s);
-}*/
 
 /*
 ** Function: dup_err
