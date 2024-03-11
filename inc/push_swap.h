@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:04 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/01 17:01:38 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:00:50 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ typedef struct s_stack
 	int	last_b;
 }	t_stack;
 
-void	dup_err(int *data, int size);
+void	dup_err(int *data, int size, t_stack *stack, char **matrix);
 bool	stack_sorted(int *stack, int size);
-void	ft_error(char *type);
+void	ft_error(char *type, t_stack *stack, char **matrix);
 void	fill_stack(int len, char **str, t_stack *stack, int i);
 t_stack	*init_stack(int ac, char **av);
 void	ft_exit(t_stack *stack);
-int		ft_superatoi(char *str);
+int		ft_superatoi(char *str, t_stack *stack, char **matrix);
+void	free_matrix(char **matrix);
 
 int		sort_brain(t_stack *stack);
 void	smol_sort(t_stack *stack);
