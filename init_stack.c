@@ -86,12 +86,8 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 /*
 ** Function: ft_superatoi
 ** -----------------------
-** Converts a string representation of an integer to an integer.
-** Handles whitespace, signs, checks for non-numeric characters and 
-** handles overflow.
 **
 ** str: String containing the integer representation.
-**
 ** returns: Integer representation of the string.
 */
 
@@ -119,7 +115,7 @@ int	ft_superatoi(char *str)
 			ft_error("Non numeric character found!");
 		r = r * 10 + str[i++] - '0';
 	}
-	if (r > 2147483647 || r < -2147483647)
+	if (r > INT_MAX || r < INT_MIN)
 		ft_error("Out of Range!");
 	return (r * s);
 }
