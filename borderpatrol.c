@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:46:32 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/07 23:14:06 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:38:01 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	ft_superatoi(char *str, char **str2, t_stack *stack)
 		r = r * 10 + str[i++] - '0';
 		size_matters(r, s, str2, stack);
 	}
-	if (!ft_isdigit(str[i]))
+	if (str[i] && !ft_isdigit(str[i]))
 		{
-			free_matrix(str2);
+			//free_matrix(str2);
 			ft_error("Non numeric character found!", stack);
 		}
 	return (r * s);
