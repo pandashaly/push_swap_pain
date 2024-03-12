@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:14:30 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/05 16:33:58 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:04:16 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	stack_sorted(int *stack, int size)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < size)
 	{
 		if (stack[i - 1] > stack[i])

@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:04 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/12 17:37:07 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:58:23 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 
 typedef struct s_stack
 {
-	int	*a;
-	int	*b;
-	int	last_a;
-	int	last_b;
-	char 	**matrix;
+	int		*a;
+	int		*b;
+	int		last_a;
+	int		last_b;
+	char	**matrix;
 	bool	splitted;
 }	t_stack;
 
