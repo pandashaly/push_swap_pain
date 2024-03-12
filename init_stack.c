@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/11 21:14:56 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:40:07 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,25 @@
 t_stack	*init_stack(int ac, char **av)
 {
 	t_stack		*stack;
-	char		**str;
 	int			len;
 
 	len = 0;
-	stack = NULL;
 	stack = malloc(sizeof(t_stack));
+	stack->matrix = av;
+	stack->splitted = false;
 	if (ac == 2)
 	{
-		str = ft_split(av[1], ' ');
-		if (!str)
-			ft_error("Split failed", stack, str);
-		while (str[len])
+		stack->splitted = true;
+		stack->matrix = ft_split(av[1], ' ');
+		if (!stack->matrix)
+			ft_error("Split failed", stack);
+		while (stack->matrix[len])
 			len++;
-		fill_stack(len, str, stack, 0);
-		free_matrix(str);
+		fill_stack(len, stack, 0);
+		free_matrix(stack);
 	}
 	else if (ac >= 3)
-		fill_stack(ac, av, stack, 1);
+		fill_stack(ac, stack, 1);
 	else
 		exit(EXIT_FAILURE);
 	return (stack);
@@ -67,7 +68,7 @@ t_stack	*init_stack(int ac, char **av)
 ** returns: None.
 */
 
-void	fill_stack(int ac, char **str, t_stack *stack, int i)
+void	fill_stack(int ac, t_stack *stack, int i)
 {
 	int	len;
 
@@ -75,8 +76,8 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 	stack->a = (int *)malloc(sizeof(int) * (ac - 1));
 	stack->b = (int *)malloc(sizeof(int) * (ac - 1));
 	while (i < ac)
-		stack->a[len++] = ft_superatoi(str[i++], stack, str);
-	dup_err(stack->a, len, stack, str);
+		stack->a[len++] = ft_superatoi(stack->matrix[i++], stack);
+	dup_err(stack->a, len, stack);
 	stack->last_a = len;
 	stack->last_b = 0;
 }
@@ -87,9 +88,9 @@ void	fill_stack(int ac, char **str, t_stack *stack, int i)
 **
 ** str: String containing the integer representation.
 ** returns: Integer representation of the string.
-*/
+)*/
 
-int	ft_superatoi(char *str, t_stack *stack, char **matrix)
+int	ft_superatoi(char *str, t_stack *stack)
 {
 	long int	r;
 	int			s;
@@ -110,10 +111,10 @@ int	ft_superatoi(char *str, t_stack *stack, char **matrix)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			ft_error("Non numeric character found!", stack, matrix);
+			ft_error("Non numeric character found!", stack);
 		r = r * 10 + str[i++] - '0';
 		if (r > INT_MAX || r < INT_MIN)
-			ft_error("Out of Range!", stack, matrix);
+			ft_error("Out of Range!", stack);
 	}
 	return (r * s);
 }
@@ -130,7 +131,7 @@ int	ft_superatoi(char *str, t_stack *stack, char **matrix)
 ** returns: None.
 */
 
-void	dup_err(int *data, int size, t_stack *stack, char **matrix)
+void	dup_err(int *data, int size, t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -142,7 +143,7 @@ void	dup_err(int *data, int size, t_stack *stack, char **matrix)
 		while (j < size)
 		{
 			if (data[i] == data[j])
-				ft_error("Duplicate found", stack, matrix);
+				ft_error("Duplicate found", stack);
 			j++;
 		}
 		i++;
@@ -160,15 +161,15 @@ void	dup_err(int *data, int size, t_stack *stack, char **matrix)
 ** returns: None.
 */
 
-void	free_matrix(char **matrix)
+void	free_matrix(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	while (matrix[i])
+	while (stack->matrix[i])
 	{
-		free(matrix[i]);
+		free(stack->matrix[i]);
 		i++;
 	}
-	free(matrix);
+	free(stack->matrix);
 }
