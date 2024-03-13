@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:26:21 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/12 22:20:57 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:37:09 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ int	rrb(t_stack *stack)
 	int	tmp;
 
 	tmp = stack->b[stack->last_b - 1];
-	len = stack->last_b;
-	while (len-- > 0)
+	len = stack->last_b - 1;
+	while (len > 0)
+	{
 		stack->b[len] = stack->b[len - 1];
+		len--;
+	}
 	stack->b[0] = tmp;
 	write(1, "rrb\n", 4);
 	return (1);
