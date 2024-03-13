@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:54:34 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/07 21:33:21 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:14:31 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 	{
 		if (stack->a[0] < pivot && (size--))
 			pb(stack);
-		else if (++rotate_count)
+		else if (++rotate_count && stack->last_a)
 			ra(stack);
 	}
 	rra_round(stack, rotate_count, numbers, stack->last_a);
@@ -78,9 +78,6 @@ int	chunky_sort(t_stack *stack, int size, int rotate_count)
 /*
 ** Function: quicksort_b
 ** ----------------------
-** This function sorts the B stack in descending order using the quicksort algo.
-** The function recursively calls itself to sort the two sub-arrays 
-** until all elements are sorted.
 **
 ** stack: Pointer to the stack structure.
 ** size: Size of the array to be sorted.

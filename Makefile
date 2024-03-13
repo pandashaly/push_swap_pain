@@ -6,7 +6,7 @@
 #    By: ssottori <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 19:29:37 by ssottori          #+#    #+#              #
-#    Updated: 2024/02/15 21:52:19 by ssottori         ###   ########.fr        #
+#    Updated: 2024/03/13 15:02:34 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ SRCS = push_swap.c \
 	smol_sort.c \
 	chunky_sort.c \
 	utils.c \
-	borderpatrol.c \
 	commands/rotate.c \
 	commands/swap.c \
 	commands/push.c \

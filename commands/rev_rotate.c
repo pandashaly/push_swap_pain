@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 19:26:21 by ssottori          #+#    #+#             */
-/*   Updated: 2024/02/14 19:40:00 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/12 22:20:57 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	rra(t_stack *stack)
 	int	tmp;
 
 	tmp = stack->a[stack->last_a - 1];
-	len = stack->last_a;
+	len = stack->last_a - 1;
 	while (len > 0)
 	{
 		stack->a[len] = stack->a[len - 1];
