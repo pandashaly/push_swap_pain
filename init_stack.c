@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/12 18:59:33 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:56:43 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,7 @@ t_stack	*init_stack(int ac, char **av)
 	stack->matrix = av;
 	stack->splitted = false;
 	if (ac == 2)
-	{
-		stack->splitted = true;
-		stack->matrix = ft_split(av[1], ' ');
-		if (!stack->matrix)
-			ft_error("Split failed", stack);
-		while (stack->matrix[len])
-			len++;
-		fill_stack(len, stack, 0);
-		free_matrix(stack);
-	}
+		splitting(stack, len);
 	else if (ac >= 3)
 		fill_stack(ac, stack, 1);
 	else
@@ -76,7 +67,11 @@ void	fill_stack(int ac, t_stack *stack, int i)
 	stack->a = (int *)malloc(sizeof(int) * (ac));
 	stack->b = (int *)malloc(sizeof(int) * (ac));
 	while (i < ac)
+	{
+		if (ft_issign(stack->matrix[i][0]) && !stack->matrix[i][1])
+			ft_error("Invalid", stack);
 		stack->a[len++] = ft_superatoi(stack->matrix[i++], stack);
+	}
 	dup_err(stack->a, len, stack);
 	stack->last_a = len;
 	stack->last_b = 0;

@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:51:05 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/13 17:43:09 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:44:40 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,28 @@ void	ft_exit(t_stack *stack)
 	if (stack)
 		free(stack);
 	return ;
+}
+
+void	splitting(t_stack *stack, int len)
+{
+	stack->splitted = true;
+	stack->matrix = ft_split(stack->matrix[1], ' ');
+	if (!stack->matrix)
+		ft_error("Split failed", stack);
+	if (!strarr_len(stack->matrix))
+		ft_error("Split empty", stack);
+	while (stack->matrix[len])
+		len++;
+	fill_stack(len, stack, 0);
+	free_matrix(stack);
+}
+
+size_t	strarr_len(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	while (*arr++)
+		i++;
+	return (i);
 }
