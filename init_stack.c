@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:46:40 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/13 18:56:43 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/13 23:13:01 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_stack	*init_stack(int ac, char **av)
 
 	len = 0;
 	stack = malloc(sizeof(t_stack));
+	stack->a = NULL;
+	stack->b = NULL;
 	stack->matrix = av;
 	stack->splitted = false;
 	if (ac == 2)
