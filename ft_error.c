@@ -21,10 +21,9 @@
 ** returns: None.
 */
 
-void	ft_error(char *type, t_stack *stack)
+void	ft_error(t_stack *stack)
 {
 	ft_putstr_fd("Error\n", 2);
-	ft_printf("%s\n", type);
 	if (stack->splitted)
 		free_matrix(stack);
 	ft_exit(stack);
@@ -56,9 +55,9 @@ void	splitting(t_stack *stack, int len)
 	stack->splitted = true;
 	stack->matrix = ft_split(stack->matrix[1], ' ');
 	if (!stack->matrix)
-		ft_error("Split failed", stack);
+		ft_error(stack);
 	if (!strarr_len(stack->matrix))
-		ft_error("Split empty", stack);
+		ft_error(stack);
 	while (stack->matrix[len])
 		len++;
 	fill_stack(len, stack, 0);

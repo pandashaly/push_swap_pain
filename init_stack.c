@@ -69,7 +69,7 @@ void	fill_stack(int ac, t_stack *stack, int i)
 	while (i < ac)
 	{
 		if (ft_issign(stack->matrix[i][0]) && !stack->matrix[i][1])
-			ft_error("Invalid", stack);
+			ft_error(stack);
 		stack->a[len++] = ft_superatoi(stack->matrix[i++], stack);
 	}
 	dup_err(stack->a, len, stack);
@@ -106,10 +106,10 @@ int	ft_superatoi(char *str, t_stack *stack)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			ft_error("Non numeric character found!", stack);
+			ft_error(stack);
 		r = r * 10 + str[i++] - '0';
 		if (r > INT_MAX || r < INT_MIN)
-			ft_error("Out of Range!", stack);
+			ft_error(stack);
 	}
 	return (r * s);
 }
@@ -138,7 +138,7 @@ void	dup_err(int *data, int size, t_stack *stack)
 		while (j < size)
 		{
 			if (data[i] == data[j])
-				ft_error("Duplicate found", stack);
+				ft_error(stack);
 			j++;
 		}
 		i++;

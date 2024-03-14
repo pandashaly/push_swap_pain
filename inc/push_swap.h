@@ -32,7 +32,7 @@ typedef struct s_stack
 
 void	dup_err(int *data, int size, t_stack *stack);
 bool	stack_sorted(int *stack, int size);
-void	ft_error(char *type, t_stack *stack);
+void	ft_error(t_stack *stack);
 void	fill_stack(int len, t_stack *stack, int i);
 t_stack	*init_stack(int ac, char **av);
 void	ft_exit(t_stack *stack);
