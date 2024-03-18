@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:43:33 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/05 22:18:53 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:15:17 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	find_smol(t_stack *stack)
 	return (smol);
 }
 
-void	sort_five(t_stack *stack)
+/*void	sort_five(t_stack *stack)
 {
 	if (stack->last_a == 5)
 	{
@@ -46,7 +46,25 @@ void	sort_five(t_stack *stack)
 				pb(stack);
 		}
 	}
+}*/
+
+void    sort_five(t_stack *stack)
+{
+	if (stack->last_a == 5)
+	{
+		while (!stack_sorted(stack->a, stack->last_a))
+		{
+			if (stack->a[0] == find_smol(stack))
+				pb(stack);
+			else
+				ra(stack);
+		}
+		smol_sort(stack);
+                while (stack->last_b > 0)
+			pa(stack);
+	}
 }
+
 
 void	sort_ten(t_stack *stack)
 {
