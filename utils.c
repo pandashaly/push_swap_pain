@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:43:33 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/18 18:37:48 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/18 22:24:49 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,33 @@ int	find_smol(t_stack *stack)
 	return (smol);
 }
 
-/*void	sort_five(t_stack *stack)
+static void	find_smollest(t_stack *stack)
 {
-	if (stack->last_a == 5)
+	int	smol;
+	int	smollest;
+	int	i;
+
+	i = 0;
+	smol = stack->a[stack->last_a - 1];
+	smollest = stack->a[stack->last_a];
+	while (i < stack->last_a)
 	{
-		while (!stack_sorted(stack->a, stack->last_a))
+		if (stack->a[i] < smol)
 		{
-			if (stack->a[0] > stack->a[1])
-				sa(stack);
-			else if (stack->a[0] > stack->a[2])
-				ra(stack);
-			else if (stack->a[0] > stack->a[3])
-				rra(stack);
-			else if (stack->a[0] > stack->a[4])
-				pb(stack);
-			else
-				pb(stack);
+			smollest = smol;
+			smol = stack->a[i];
 		}
+		else if (stack->a[i] < smollest)
+			smollest = stack->a[i];
+		i++;
 	}
-}*/
+	while (i <= stack->last_a)
+	{
+		if (stack->a[i] == smol || stack->a[i] == smollest)
+			pb(stack);
+		i++;
+	}
+}
 
 void    sort_five(t_stack *stack)
 {
@@ -57,14 +65,13 @@ void    sort_five(t_stack *stack)
 			rra(stack);
 		while (!stack_sorted(stack->a, stack->last_a))
 		{
-			if (stack->a[0])
-				pb(stack);
-			else if (stack->last_a == 3)
+			find_smollest(stack);
+			if (stack->last_a == 3)
 				smol_sort(stack);
 			else
 				ra(stack);
 		}
-                while (stack->last_b > 0)
+                while (!stack_sorted(stack->b, stack->last_b) && stack->last_b > 0)
 			pa(stack);
 	}
 }
