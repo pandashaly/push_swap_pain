@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:40:08 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/19 15:54:07 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:06:17 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,5 @@ void	special_needs(t_stack *stack)
 			rra(stack);
 			sa(stack);
 		}
-		else
-			sort_five(stack);
 	}
 }

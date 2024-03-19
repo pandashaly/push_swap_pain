@@ -6,13 +6,13 @@
 #    By: ssottori <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/18 15:53:08 by ssottori          #+#    #+#              #
-#    Updated: 2024/03/19 15:15:29 by ssottori         ###   ########.fr        #
+#    Updated: 2024/03/19 16:03:51 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
-for i in $(seq 1 20); do 
+for i in $(seq 1 150); do 
     ARG=$(seq 1 5 | shuf -n 5);
     echo "=============="; 
     echo "Test $i:";
