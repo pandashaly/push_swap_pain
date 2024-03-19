@@ -6,7 +6,7 @@
 #    By: ssottori <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/18 15:53:08 by ssottori          #+#    #+#              #
-#    Updated: 2024/03/18 18:49:40 by ssottori         ###   ########.fr        #
+#    Updated: 2024/03/19 15:15:29 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,5 +32,5 @@ for i in $(seq 1 20); do
     else
 	echo -e "Checker: \033[0;31m$result\033[0m";
     fi
-    echo "$moves";
+    #echo "$moves";
 done
