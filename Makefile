@@ -31,6 +31,7 @@ SRCS = push_swap.c \
 	smol_sort.c \
 	chunky_sort.c \
 	utils.c \
+	uutils.c \
 	commands/rotate.c \
 	commands/swap.c \
 	commands/push.c \

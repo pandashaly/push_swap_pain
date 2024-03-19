@@ -40,6 +40,7 @@ int		ft_superatoi(char *str, t_stack *stack);
 void	free_matrix(t_stack *stack);
 void	splitting(t_stack *stack, int len);
 size_t	strarr_len(char **arr);
+void	special_needs(t_stack *stack);
 
 int		sort_brain(t_stack *stack);
 void	smol_sort(t_stack *stack);

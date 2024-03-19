@@ -6,7 +6,7 @@
 /*   By: ssottori <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:43:33 by ssottori          #+#    #+#             */
-/*   Updated: 2024/03/19 15:18:58 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:41:41 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	sort_five(t_stack *stack)
 {
 	if (stack->last_a == 5)
 	{
+		special_needs(stack);
 		if (stack_sorted_desc(stack->a, stack->last_a)
 			&& !stack_sorted(stack->a, stack->last_a))
 			rra(stack);
